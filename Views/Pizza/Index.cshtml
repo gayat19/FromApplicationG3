@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MyPizzaStoreApplication.Models.Pizza>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/bootstrap.css" rel="stylesheet" />
+    <title>Index</title>
+    <style>
+        div{
+            float:left;
+            margin:5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="accordion-header">
+        Welcome to MyPizza strore...
+    </h1>
+    <section>
+        @Html.ActionLink("Add Pizza", "Create", "Pizza")
+    </section>
+    <h2 class="alert-dismissible ">
+        Select the pizza that you want
+    </h2>
+    @foreach (var item in Model)
+    {
+<div>
+    @Html.DisplayFor(m => item.Name, new { htmlAttribute = new { @class = "alert alert-info" } })
+    @Html.ActionLink("View More", "Details", "Pizza", new { Id = item.Id })
+    @Html.ActionLink("Edit Pizza details", "Edit", "Pizza", new { Id = item.Id })
+    <hr />
+    <br />
+
+</div>
+    }
+
+</body>
+</html>
